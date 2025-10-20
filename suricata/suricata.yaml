@@ -1,0 +1,54 @@
+%YAML 1.1
+---
+# ============================
+# Suricata Basic Configuration
+# ============================
+
+# Interfaces to monitor
+af-packet:
+  - interface: eth1
+  - interface: eth2
+
+# ============================
+# Network Variables
+# ============================
+vars:
+  address-groups:
+    HOME_NET: "[172.30.20.0/24]"
+    EXTERNAL_NET: "!$HOME_NET" 
+    SQL_SERVERS: "any"
+
+  port-groups:
+    HTTP_PORTS: "80,8080,443"
+    SHELLCODE_PORTS: "!80"
+    SSH_PORTS: "22"
+    ORACLE_PORTS: "1521"
+
+# ============================
+# Outputs
+# ============================
+outputs:
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: /var/log/suricata/eve.json
+      types:
+        - alert
+        - dns
+        - http
+        - tls
+        - flow
+        - ssh
+        - stats
+
+# ============================
+# Logging
+# ============================
+logging:
+  default-log-level: info
+  outputs:
+    - console:
+        enabled: yes
+    - file:
+        enabled: yes
+        filename: /var/log/suricata/suricata.log

@@ -1,0 +1,6 @@
+# Dummy Filebeat config - disables outputs completely
+filebeat.inputs: []
+output.console:
+  enabled: false
+logging.level: error
+
