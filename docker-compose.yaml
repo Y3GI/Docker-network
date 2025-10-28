@@ -17,15 +17,9 @@ services:
     command: >
       /bin/sh -c "
       apk add --no-cache nftables suricata tcpdump iproute2;
-      echo 'Flushing Docker default rules...';
-      iptables -t nat -F;
-      iptables -t nat -X;
-      iptables -t filter -F;
-      iptables -t filter -X;
+      systctl -w net.ipv4.ip_forward=1;
       echo 'Loading nftables rules...';
       nft flush ruleset;
-      nft -f /etc/nftables.conf;
-      echo 'Loading nftables rules...';
       nft -f /etc/nftables.conf;
       echo 'Starting Suricata IDS...';
       rm -f /var/run/suricata.pid;
@@ -34,9 +28,12 @@ services:
     dns:
       - 172.30.20.200
     networks:
-      - wan_net
-      - dmz_net
-      - internal_net
+      wan_net:
+        ipv4_address: 172.30.99.1
+      dmz_net:
+        ipv4_address: 172.30.10.1
+      internal_net:
+        ipv4_address: 172.30.20.1
 
   # CoreDNS Server
   dns:
@@ -49,6 +46,8 @@ services:
         ipv4_address: 172.30.20.200
       wan_net:
         ipv4_address: 172.30.99.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
     volumes:
       - ./Corefile:/Corefile:ro
     command: -conf /Corefile
@@ -73,6 +72,8 @@ services:
       dmz_net:
         aliases:
           - proxy.dmz
+    extra_hosts:
+      - "rtr:172.30.10.1"
     depends_on:
       - app_public
 
@@ -85,6 +86,8 @@ services:
           - app.dmz
     dns:
       - 172.30.10.200
+    extra_hosts:
+      - "rtr:172.30.10.1"
     volumes:
       - ./html:/usr/local/apache2/htdocs:ro
 
@@ -98,6 +101,8 @@ services:
           - app.internal
     dns:
       - 172.30.20.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
 
   # WireGuard VPN
   vpn:
@@ -122,6 +127,8 @@ services:
     networks:
       - wan_net
       - internal_net
+    extra_hosts:
+      - "rtr:172.30.20.1"
 
   # Wazuh SIEM (manager only)
   wazuh.manager:
@@ -145,6 +152,8 @@ services:
       - ./disable-filebeat:/etc/services.d/filebeat
     dns:
       - 172.30.20.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
 
   prometheus:
     image: prom/prometheus:latest
@@ -159,6 +168,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
     dns:
       - 172.30.20.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
 
   loki:
     image: grafana/loki:2.9.8
@@ -172,6 +183,8 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     dns:
       - 172.30.20.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
 
   promtail:
     image: grafana/promtail:2.9.8
@@ -188,6 +201,8 @@ services:
           - promtail.internal
     dns:
       - 172.30.20.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
     labels:
       - "traefik.enable=false"
 
@@ -210,26 +225,40 @@ services:
       - grafana_data:/var/lib/grafana
     dns:
       - 172.30.20.200
+    extra_hosts:
+      - "rtr:172.30.20.1"
 
 volumes:
   grafana_data:
 
 networks:
   wan_net:
-    driver: bridge
+    driver: macvlan
+    driver_opts:
+      parent: dummy0
     ipam:
+      driver: default
       config:
-        - subnet: 172.30.99.0/24
+        - subnet: "172.30.99.0/24"
+          gateway: "172.30.99.1"
   dmz_net:
-    driver: bridge
+    driver: macvlan
+    driver_opts:
+      parent: dummy0
     ipam:
+      driver: default
       config:
-        - subnet: 172.30.10.0/24
+        - subnet: "172.30.10.0/24"
+          gateway: "172.30.10.1"
   internal_net:
-    driver: bridge
+    driver: macvlan
+    driver_opts: 
+      parent: dummy0
     ipam:
+      driver: default
       config:
-        - subnet: 172.30.20.0/24
+        - subnet: "172.30.20.0/24"
+          gateway: "172.30.20.1"
 
 configs:
   nftables_conf:

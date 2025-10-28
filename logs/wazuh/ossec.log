@@ -375,3 +375,191 @@
 2025/10/20 00:47:04 rootcheck: INFO: Ending rootcheck scan.
 2025/10/20 01:46:45 wazuh-modulesd:syscollector: INFO: Starting evaluation.
 2025/10/20 01:46:49 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+2025/10/28 16:47:24 wazuh-modulesd:router: INFO: Loaded router module.
+2025/10/28 16:47:24 wazuh-modulesd:content_manager: INFO: Loaded content_manager module.
+2025/10/28 16:47:26 wazuh-csyslogd: INFO: Remote syslog server not configured. Clean exit.
+2025/10/28 16:47:26 wazuh-dbd: INFO: Database not configured. Clean exit.
+2025/10/28 16:47:26 wazuh-integratord: INFO: Remote integrations not configured. Clean exit.
+2025/10/28 16:47:26 wazuh-agentlessd: INFO: Not configured. Exiting.
+2025/10/28 16:47:26 wazuh-authd: INFO: Started (pid: 503).
+2025/10/28 16:47:26 wazuh-authd: INFO: Accepting connections on port 1515. No password required.
+2025/10/28 16:47:26 wazuh-authd: INFO: Setting network timeout to 1.000000 sec.
+2025/10/28 16:47:26 wazuh-db: INFO: Started (pid: 517).
+2025/10/28 16:47:27 wazuh-db: INFO: Created Global database backup "backup/db/global.db-backup-2025-10-28-16:47:27.gz"
+2025/10/28 16:47:27 wazuh-execd: INFO: Started (pid: 543).
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: Started (pid: 565).
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6003): Monitoring path: '/bin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6003): Monitoring path: '/boot', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6003): Monitoring path: '/etc', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6003): Monitoring path: '/sbin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6003): Monitoring path: '/usr/bin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6003): Monitoring path: '/usr/sbin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/mtab'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/hosts.deny'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/mail/statistics'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/random-seed'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/random.seed'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/adjtime'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/httpd/logs'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/utmpx'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/wtmpx'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/cups/certs'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/dumpdates'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/svc/volatile'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6207): Ignore 'file' sregex '.log$|.swp$'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6004): No diff for file: '/etc/ssl/private.key'
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6000): Starting daemon...
+2025/10/28 16:47:27 rootcheck: INFO: Starting rootcheck scan.
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6010): File integrity monitoring scan frequency: 43200 seconds
+2025/10/28 16:47:27 wazuh-syscheckd: INFO: (6008): File integrity monitoring scan started.
+2025/10/28 16:47:28 wazuh-syscheckd: INFO: (6009): File integrity monitoring scan ended.
+2025/10/28 16:47:28 wazuh-syscheckd: INFO: FIM sync module started.
+2025/10/28 16:47:28 wazuh-analysisd: INFO: Total rules enabled: '7006'
+2025/10/28 16:47:28 wazuh-analysisd: INFO: Started (pid: 555).
+2025/10/28 16:47:28 wazuh-remoted: INFO: Started (pid: 612). Listening on port 1514/TCP (secure).
+2025/10/28 16:47:29 wazuh-remoted: INFO: (1410): Reading authentication keys file.
+2025/10/28 16:47:29 wazuh-analysisd: INFO: (7200): Logtest started
+2025/10/28 16:47:29 wazuh-analysisd: INFO: EPS limit disabled
+2025/10/28 16:47:29 wazuh-logcollector: INFO: Monitoring output of command(360): df -P
+2025/10/28 16:47:29 wazuh-logcollector: INFO: Monitoring full output of command(360): netstat -tulpn | sed 's/\([[:alnum:]]\+\)\ \+[[:digit:]]\+\ \+[[:digit:]]\+\ \+\(.*\):\([[:digit:]]*\)\ \+\([0-9\.\:\*]\+\).\+\ \([[:digit:]]*\/[[:alnum:]\-]*\).*/\1 \2 == \3 == \4 \5/' | sort -k 4 -g | sed 's/ == \(.*\) ==/:\1/' | sed 1,2d
+2025/10/28 16:47:29 wazuh-logcollector: INFO: Monitoring full output of command(360): last -n 20
+2025/10/28 16:47:29 wazuh-logcollector: INFO: (1950): Analyzing file: '/var/ossec/logs/active-responses.log'.
+2025/10/28 16:47:29 wazuh-logcollector: INFO: Started (pid: 837).
+2025/10/28 16:47:30 wazuh-monitord: INFO: Started (pid: 854).
+2025/10/28 16:47:30 wazuh-modulesd:router: INFO: Loaded router module.
+2025/10/28 16:47:30 wazuh-modulesd:content_manager: INFO: Loaded content_manager module.
+2025/10/28 16:47:30 wazuh-modulesd: INFO: Started (pid: 866).
+2025/10/28 16:47:30 wazuh-modulesd:agent-upgrade: INFO: (8153): Module Agent Upgrade started.
+2025/10/28 16:47:30 wazuh-modulesd:ciscat: INFO: Module disabled. Exiting...
+2025/10/28 16:47:30 wazuh-modulesd:task-manager: INFO: (8200): Module Task Manager started.
+2025/10/28 16:47:30 wazuh-modulesd:osquery: INFO: Module disabled. Exiting...
+2025/10/28 16:47:30 sca: INFO: Module started.
+2025/10/28 16:47:30 wazuh-modulesd:vulnerability-scanner: INFO: Starting vulnerability_scanner module.
+2025/10/28 16:47:30 wazuh-modulesd:router: INFO: Starting router module.
+2025/10/28 16:47:30 sca: INFO: Loaded policy '/var/ossec/ruleset/sca/cis_amazon_linux_2023.yml'
+2025/10/28 16:47:30 wazuh-modulesd:content_manager: INFO: Starting content_manager module.
+2025/10/28 16:47:30 sca: INFO: Starting Security Configuration Assessment scan.
+2025/10/28 16:47:30 wazuh-modulesd:database: INFO: Module started.
+2025/10/28 16:47:30 wazuh-modulesd:download: INFO: Module started.
+2025/10/28 16:47:30 wazuh-modulesd:control: INFO: Starting control thread.
+2025/10/28 16:47:30 sca: INFO: Starting evaluation of policy: '/var/ossec/ruleset/sca/cis_amazon_linux_2023.yml'
+2025/10/28 16:47:30 wazuh-modulesd:syscollector: INFO: Module started.
+2025/10/28 16:47:30 wazuh-modulesd:syscollector: INFO: Starting evaluation.
+2025/10/28 16:47:30 indexer-connector: WARNING: No username and password found in the keystore, using default values.
+2025/10/28 16:47:30 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+2025/10/28 16:47:30 indexer-connector: WARNING: IndexerConnector initialization failed for index 'wazuh-states-vulnerabilities-907957ca53fb', retrying until the connection is successful.
+2025/10/28 16:47:30 wazuh-modulesd:vulnerability-scanner: INFO: Starting database file decompression.
+2025/10/28 16:47:36 sca: INFO: Evaluation finished for policy '/var/ossec/ruleset/sca/cis_amazon_linux_2023.yml'
+2025/10/28 16:47:36 sca: INFO: Security Configuration Assessment scan finished. Duration: 6 seconds.
+2025/10/28 16:47:53 rootcheck: INFO: Ending rootcheck scan.
+2025/10/28 16:48:01 wazuh-modulesd:vulnerability-scanner: INFO: Database decompression finished.
+2025/10/28 16:48:02 wazuh-modulesd:vulnerability-scanner: INFO: Vulnerability scanner module started.
+2025/10/28 17:33:56 wazuh-modulesd:content-updater: ERROR: Action for 'vulnerability_feed_manager' failed: Orchestration run failed: Error -1 from server: Couldn't resolve host name.
+2025/10/28 17:47:31 wazuh-modulesd:syscollector: INFO: Starting evaluation.
+2025/10/28 17:47:34 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+2025/10/28 18:02:37 wazuh-logcollector: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-db: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-syscheckd: INFO: (1756): Shutdown received. Releasing resources.
+2025/10/28 18:02:37 wazuh-authd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-execd: INFO: (1314): Shutdown received. Deleting responses.
+2025/10/28 18:02:37 wazuh-remoted: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-monitord: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-analysisd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-authd: INFO: (1225): SIGNAL [(1)-(Hangup)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-db: INFO: (1225): SIGNAL [(1)-(Hangup)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-syscheckd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:37 wazuh-execd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:02:38 wazuh-authd: INFO: Exiting...
+2025/10/28 18:03:25 wazuh-modulesd:router: INFO: Loaded router module.
+2025/10/28 18:03:25 wazuh-modulesd:content_manager: INFO: Loaded content_manager module.
+2025/10/28 18:03:29 wazuh-csyslogd: INFO: Remote syslog server not configured. Clean exit.
+2025/10/28 18:03:29 wazuh-dbd: INFO: Database not configured. Clean exit.
+2025/10/28 18:03:29 wazuh-integratord: INFO: Remote integrations not configured. Clean exit.
+2025/10/28 18:03:29 wazuh-agentlessd: INFO: Not configured. Exiting.
+2025/10/28 18:03:29 wazuh-authd: INFO: Started (pid: 503).
+2025/10/28 18:03:29 wazuh-authd: INFO: Accepting connections on port 1515. No password required.
+2025/10/28 18:03:29 wazuh-authd: INFO: Setting network timeout to 1.000000 sec.
+2025/10/28 18:03:29 wazuh-db: INFO: Started (pid: 517).
+2025/10/28 18:03:30 wazuh-db: INFO: Created Global database backup "backup/db/global.db-backup-2025-10-28-18:03:30.gz"
+2025/10/28 18:03:30 wazuh-execd: INFO: Started (pid: 543).
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: Started (pid: 565).
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6003): Monitoring path: '/bin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6003): Monitoring path: '/boot', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6003): Monitoring path: '/etc', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6003): Monitoring path: '/sbin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6003): Monitoring path: '/usr/bin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6003): Monitoring path: '/usr/sbin', with options 'size | permissions | owner | group | mtime | inode | hash_md5 | hash_sha1 | hash_sha256 | scheduled'.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/mtab'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/hosts.deny'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/mail/statistics'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/random-seed'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/random.seed'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/adjtime'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/httpd/logs'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/utmpx'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/wtmpx'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/cups/certs'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/dumpdates'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6206): Ignore 'file' entry '/etc/svc/volatile'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6207): Ignore 'file' sregex '.log$|.swp$'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6004): No diff for file: '/etc/ssl/private.key'
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6000): Starting daemon...
+2025/10/28 18:03:31 rootcheck: INFO: Starting rootcheck scan.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6010): File integrity monitoring scan frequency: 43200 seconds
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6008): File integrity monitoring scan started.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: (6009): File integrity monitoring scan ended.
+2025/10/28 18:03:31 wazuh-syscheckd: INFO: FIM sync module started.
+2025/10/28 18:03:32 wazuh-analysisd: INFO: Total rules enabled: '7006'
+2025/10/28 18:03:32 wazuh-remoted: INFO: Started (pid: 597). Listening on port 1514/TCP (secure).
+2025/10/28 18:03:32 wazuh-analysisd: INFO: Started (pid: 555).
+2025/10/28 18:03:32 wazuh-remoted: INFO: (1410): Reading authentication keys file.
+2025/10/28 18:03:32 wazuh-analysisd: INFO: (7200): Logtest started
+2025/10/28 18:03:32 wazuh-analysisd: INFO: EPS limit disabled
+2025/10/28 18:03:33 wazuh-logcollector: INFO: Monitoring output of command(360): df -P
+2025/10/28 18:03:33 wazuh-logcollector: INFO: Monitoring full output of command(360): netstat -tulpn | sed 's/\([[:alnum:]]\+\)\ \+[[:digit:]]\+\ \+[[:digit:]]\+\ \+\(.*\):\([[:digit:]]*\)\ \+\([0-9\.\:\*]\+\).\+\ \([[:digit:]]*\/[[:alnum:]\-]*\).*/\1 \2 == \3 == \4 \5/' | sort -k 4 -g | sed 's/ == \(.*\) ==/:\1/' | sed 1,2d
+2025/10/28 18:03:33 wazuh-logcollector: INFO: Monitoring full output of command(360): last -n 20
+2025/10/28 18:03:33 wazuh-logcollector: INFO: (1950): Analyzing file: '/var/ossec/logs/active-responses.log'.
+2025/10/28 18:03:33 wazuh-logcollector: INFO: Started (pid: 833).
+2025/10/28 18:03:33 wazuh-monitord: INFO: Started (pid: 852).
+2025/10/28 18:03:33 wazuh-modulesd:router: INFO: Loaded router module.
+2025/10/28 18:03:33 wazuh-modulesd:content_manager: INFO: Loaded content_manager module.
+2025/10/28 18:03:33 wazuh-modulesd: INFO: Started (pid: 864).
+2025/10/28 18:03:33 wazuh-modulesd:agent-upgrade: INFO: (8153): Module Agent Upgrade started.
+2025/10/28 18:03:33 wazuh-modulesd:ciscat: INFO: Module disabled. Exiting...
+2025/10/28 18:03:33 wazuh-modulesd:osquery: INFO: Module disabled. Exiting...
+2025/10/28 18:03:33 wazuh-modulesd:task-manager: INFO: (8200): Module Task Manager started.
+2025/10/28 18:03:33 sca: INFO: Module started.
+2025/10/28 18:03:33 wazuh-modulesd:vulnerability-scanner: INFO: Starting vulnerability_scanner module.
+2025/10/28 18:03:33 sca: INFO: Loaded policy '/var/ossec/ruleset/sca/cis_amazon_linux_2023.yml'
+2025/10/28 18:03:33 wazuh-modulesd:router: INFO: Starting router module.
+2025/10/28 18:03:33 wazuh-modulesd:content_manager: INFO: Starting content_manager module.
+2025/10/28 18:03:33 sca: INFO: Starting Security Configuration Assessment scan.
+2025/10/28 18:03:33 wazuh-modulesd:database: INFO: Module started.
+2025/10/28 18:03:33 wazuh-modulesd:download: INFO: Module started.
+2025/10/28 18:03:33 wazuh-modulesd:control: INFO: Starting control thread.
+2025/10/28 18:03:33 wazuh-modulesd:syscollector: INFO: Module started.
+2025/10/28 18:03:33 wazuh-modulesd:syscollector: INFO: Starting evaluation.
+2025/10/28 18:03:33 sca: INFO: Starting evaluation of policy: '/var/ossec/ruleset/sca/cis_amazon_linux_2023.yml'
+2025/10/28 18:03:33 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+2025/10/28 18:03:33 indexer-connector: WARNING: No username and password found in the keystore, using default values.
+2025/10/28 18:03:33 indexer-connector: WARNING: IndexerConnector initialization failed for index 'wazuh-states-vulnerabilities-ffcdf81599a7', retrying until the connection is successful.
+2025/10/28 18:03:33 wazuh-modulesd:vulnerability-scanner: INFO: Starting database file decompression.
+2025/10/28 18:03:40 sca: INFO: Evaluation finished for policy '/var/ossec/ruleset/sca/cis_amazon_linux_2023.yml'
+2025/10/28 18:03:40 sca: INFO: Security Configuration Assessment scan finished. Duration: 7 seconds.
+2025/10/28 18:03:56 rootcheck: INFO: Ending rootcheck scan.
+2025/10/28 18:04:06 wazuh-modulesd:vulnerability-scanner: INFO: Database decompression finished.
+2025/10/28 18:04:07 wazuh-modulesd:vulnerability-scanner: INFO: Vulnerability scanner module started.
+2025/10/28 18:29:03 wazuh-modulesd:content-updater: ERROR: Action for 'vulnerability_feed_manager' failed: Orchestration run failed: Error -1 from server: Couldn't resolve host name.
+2025/10/28 18:29:53 wazuh-analysisd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-authd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-logcollector: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-remoted: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-execd: INFO: (1314): Shutdown received. Deleting responses.
+2025/10/28 18:29:53 wazuh-monitord: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-syscheckd: INFO: (1756): Shutdown received. Releasing resources.
+2025/10/28 18:29:53 wazuh-db: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-authd: INFO: (1225): SIGNAL [(1)-(Hangup)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-db: INFO: (1225): SIGNAL [(1)-(Hangup)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-execd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:53 wazuh-syscheckd: INFO: (1225): SIGNAL [(15)-(Terminated)] Received. Exit Cleaning...
+2025/10/28 18:29:54 wazuh-db: INFO: Graceful process shutdown.
