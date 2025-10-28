@@ -29,11 +29,11 @@ services:
       - 172.30.20.200
     networks:
       wan_net:
-        ipv4_address: 172.30.99.1
+        ipv4_address: 172.30.99.201
       dmz_net:
-        ipv4_address: 172.30.10.1
+        ipv4_address: 172.30.10.201
       internal_net:
-        ipv4_address: 172.30.20.1
+        ipv4_address: 172.30.20.201
 
   # CoreDNS Server
   dns:
@@ -47,7 +47,7 @@ services:
       wan_net:
         ipv4_address: 172.30.99.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
     volumes:
       - ./Corefile:/Corefile:ro
     command: -conf /Corefile
@@ -57,7 +57,7 @@ services:
     image: traefik:v3.1
     container_name: proxy
     ports:
-      - "8880:80"
+      - "8880:80"ss
       - "8443:443"
     command:
       - "--api.insecure=true"
@@ -73,7 +73,7 @@ services:
         aliases:
           - proxy.dmz
     extra_hosts:
-      - "rtr:172.30.10.1"
+      - "rtr:172.30.10.201"
     depends_on:
       - app_public
 
@@ -87,7 +87,7 @@ services:
     dns:
       - 172.30.10.200
     extra_hosts:
-      - "rtr:172.30.10.1"
+      - "rtr:172.30.10.201"
     volumes:
       - ./html:/usr/local/apache2/htdocs:ro
 
@@ -102,7 +102,7 @@ services:
     dns:
       - 172.30.20.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
 
   # WireGuard VPN
   vpn:
@@ -128,7 +128,7 @@ services:
       - wan_net
       - internal_net
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
 
   # Wazuh SIEM (manager only)
   wazuh.manager:
@@ -153,7 +153,7 @@ services:
     dns:
       - 172.30.20.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
 
   prometheus:
     image: prom/prometheus:latest
@@ -169,7 +169,7 @@ services:
     dns:
       - 172.30.20.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
 
   loki:
     image: grafana/loki:2.9.8
@@ -184,7 +184,7 @@ services:
     dns:
       - 172.30.20.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
 
   promtail:
     image: grafana/promtail:2.9.8
@@ -202,7 +202,7 @@ services:
     dns:
       - 172.30.20.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
     labels:
       - "traefik.enable=false"
 
@@ -226,7 +226,7 @@ services:
     dns:
       - 172.30.20.200
     extra_hosts:
-      - "rtr:172.30.20.1"
+      - "rtr:172.30.20.201"
 
 volumes:
   grafana_data:
@@ -240,7 +240,7 @@ networks:
       driver: default
       config:
         - subnet: "172.30.99.0/24"
-          gateway: "172.30.99.1"
+          gateway: 172.30.99.201
   dmz_net:
     driver: macvlan
     driver_opts:
@@ -249,7 +249,7 @@ networks:
       driver: default
       config:
         - subnet: "172.30.10.0/24"
-          gateway: "172.30.10.1"
+          gateway: 172.30.10.201
   internal_net:
     driver: macvlan
     driver_opts: 
@@ -258,7 +258,7 @@ networks:
       driver: default
       config:
         - subnet: "172.30.20.0/24"
-          gateway: "172.30.20.1"
+          gateway: 172.30.20.201
 
 configs:
   nftables_conf:
