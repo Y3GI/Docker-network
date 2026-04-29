@@ -1,69 +1,61 @@
 services:
-  
   # Router / Firewall / IDS
-#  rtr:
-#    image: alpine:3.20
-#    container_name: rtr
-#    cap_add:
-#      - NET_ADMIN
-#      - NET_RAW
-#      - SYS_ADMIN
-#    sysctls:
-#      net.ipv4.ip_forward: 1
-#    volumes:
-#      - ./suricata:/etc/suricata:ro
-#      - ./logs/suricata:/var/log/suricata
-#      - ./nftables.conf:/etc/nftables.conf:ro
-#    command: >
-#      /bin/sh -c "
-#      apk add --no-cache nftables suricata tcpdump iproute2;
-#      sysctl -w net.ipv4.ip_forward=1;
-#      echo 'Loading nftables rules...';
-#      nft flush ruleset;
-#      nft -f /etc/nftables.conf;
-#      echo 'Starting Suricata IDS...';
-#      rm -f /var/run/suricata.pid;
-#      suricata -c /etc/suricata/suricata.yaml -i eth1 -i eth2 -D;
-#      tail -f /var/log/suricata/suricata.log"
-#    dns:
-#      - 172.99.0.200
-#    networks:
-#      wan_net:
-#        ipv4_address: 172.99.168.152
-#      dmz_net:
-#        ipv4_address: 172.10.168.152
-#      internal_net:
-#        ipv4_address: 172.40.168.152
+  rtr:
+    image: alpine:3.20
+    container_name: rtr
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_ADMIN
+    sysctls:
+      net.ipv4.ip_forward: 1
+    volumes:
+      - ./suricata:/etc/suricata:ro
+      - ./logs/suricata:/var/log/suricata
+      - ./nftables.conf:/etc/nftables.conf:ro
+    command: >
+      /bin/sh -c "
+      apk add --no-cache nftables suricata tcpdump iproute2;
+      sysctl -w net.ipv4.ip_forward=1;
+      echo 'Loading nftables rules...';
+      nft flush ruleset;
+      nft -f /etc/nftables.conf;
+      echo 'Starting Suricata IDS...';
+      rm -f /var/run/suricata.pid;
+      suricata -c /etc/suricata/suricata.yaml -i eth1 -i eth2 -D;
+      tail -f /var/log/suricata/suricata.log"
+    networks:
+      wan_net:
+        ipv4_address: 172.99.168.152
+      dmz_net:
+        ipv4_address: 172.10.168.152
+      internal_net:
+        ipv4_address: 172.40.168.152
 
   # CoreDNS Server
   dns:
     image: coredns/coredns:latest
     container_name: dns
+    cap_add:
+      - NET_ADMIN
     networks:
       dmz_net:
         ipv4_address: 172.10.0.200
       internal_net:
         ipv4_address: 172.40.0.200
-      wan_net:
-        ipv4_address: 172.99.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
     volumes:
       - ./Corefile:/Corefile:ro
-    command: -conf /Corefile
+    command: /bin/sh -c "ip route add 172.10.0.0/16 via 172.40.168.152 && /coredns -conf /Corefile"
 
-  # DMZ reverse proxy and Apache web server
+  # DMZ reverse proxy (Traefik)
   proxy:
     image: traefik:v3.1
     container_name: proxy
+    cap_add:
+      - NET_ADMIN
     ports:
       - "8880:80"
       - "8443:443"
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     dns:
@@ -72,37 +64,39 @@ services:
       dmz_net:
         aliases:
           - proxy.dmz
-    extra_hosts:
-      - "rtr:172.10.168.152"
     depends_on:
       - app_public
+    command: /bin/sh -c "ip route add 172.40.0.0/16 via 172.10.168.152 && traefik --api.insecure=true --providers.docker=true --entrypoints.web.address=:80 --entrypoints.websecure.address=:443"
 
+  # Public App (Apache)
   app_public:
     image: httpd:latest
     container_name: app_public
+    cap_add:
+      - NET_ADMIN
     networks:
       dmz_net:
         aliases:
           - app.dmz
     dns:
       - 172.10.0.200
-    extra_hosts:
-      - "rtr:172.10.168.152"
     volumes:
       - ./html:/usr/local/apache2/htdocs:ro
+    command: /bin/sh -c "ip route add 172.40.0.0/16 via 172.10.168.152 && httpd-foreground"
 
-  # Internal web service
+  # Internal App (Nginx)
   app_internal:
     image: nginx:alpine
     container_name: app_internal
+    cap_add:
+      - NET_ADMIN
     networks:
       internal_net:
         aliases:
           - app.internal
     dns:
       - 172.40.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
+    command: /bin/sh -c "ip route add 172.10.0.0/16 via 172.40.168.152 && nginx -g 'daemon off;'"
 
   # WireGuard VPN
   vpn:
@@ -127,10 +121,8 @@ services:
     networks:
       - wan_net
       - internal_net
-    extra_hosts:
-      - "rtr:172.40.168.152"
 
-  # Wazuh SIEM (manager only)
+  # === MONITORING STACK (Cleaned up!) ===
   wazuh.manager:
     image: wazuh/wazuh-manager:4.9.1
     container_name: wazuh.manager
@@ -152,8 +144,6 @@ services:
       - ./disable-filebeat:/etc/services.d/filebeat
     dns:
       - 172.40.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
 
   prometheus:
     image: prom/prometheus:latest
@@ -168,23 +158,19 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
     dns:
       - 172.40.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
 
   loki:
     image: grafana/loki:2.9.8
     container_name: loki
+    command: -config.file=/etc/loki/local-config.yaml
     networks:
       internal_net:
         aliases:
           - loki.internal
     ports:
       - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
     dns:
       - 172.40.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
 
   promtail:
     image: grafana/promtail:2.9.8
@@ -201,8 +187,6 @@ services:
           - promtail.internal
     dns:
       - 172.40.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
     labels:
       - "traefik.enable=false"
 
@@ -225,8 +209,6 @@ services:
       - grafana_data:/var/lib/grafana
     dns:
       - 172.40.0.200
-    extra_hosts:
-      - "rtr:172.40.168.152"
 
 volumes:
   grafana_data:
@@ -238,22 +220,18 @@ networks:
       driver: default
       config:
         - subnet: "172.99.0.0/16"
-          gateway: 172.99.168.152
+          gateway: 172.99.0.1
   dmz_net:
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: "172.10.0.0/16"
-          gateway: 172.10.168.152
+          gateway: 172.10.0.1
   internal_net:
     driver: bridge
     ipam:
       driver: default
       config:
         - subnet: "172.40.0.0/16"
-          gateway: 172.40.168.152
-
-configs:
-  nftables_conf:
-    file: ./nftables.conf
+          gateway: 172.40.0.1
